@@ -31,8 +31,8 @@ dependencies {
     implementation("community.flock.aigentic:openapi:${aigenticVersion}")
 
     // Ktor client
-//    implementation("io.ktor:ktor-client-content-negotiation:${ktorVersion}")
-//    implementation("io.ktor:ktor-serialization-kotlinx-json:${ktorVersion}")
+    implementation("io.ktor:ktor-client-content-negotiation:${ktorVersion}")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:${ktorVersion}")
 
     // KSP processor
     ksp("community.flock.aigentic:ksp-processor:${aigenticVersion}")
