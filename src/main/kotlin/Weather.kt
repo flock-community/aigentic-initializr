@@ -21,12 +21,12 @@ import kotlinx.serialization.json.Json
 
 @AigenticParameter
 data class WeatherRequest(
-    val location: String
+    val location: String,
 )
 
 @AigenticResponse
 data class WeatherResponse(
-    val liveweer: List<Weather>
+    val liveweer: List<Weather>,
 ) {
     @Serializable
     data class Weather(val verw: String)
@@ -36,21 +36,13 @@ suspend fun main() {
 
     Aigentic.initialize()
 
-    val httpClient = HttpClient {
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
-
-    fun weatherUrl(location: String) = "https://weerlive.nl/api/json-data-10min.php?key=demo&locatie=${location}"
-
     // Define a weather tool using the DSL
     fun agent(location: String) = agent {
 
-        // Configure the model for the agent
+        // Configure the model for the agent, other models are also available
         openAIModel {
             apiKey("YOUR_API_KEY")
-            modelIdentifier(OpenAIModelIdentifier.GPT4Turbo)
+            modelIdentifier(OpenAIModelIdentifier.GPT4O)
         }
 
         // Configure the task for the agent
@@ -58,7 +50,7 @@ suspend fun main() {
             addInstruction("Respond to user queries about weather")
         }
 
-        // Set context
+        // Set context the agent can use to accomplish the task
         context {
             addText("Weather Information for location: $location")
         }
@@ -66,7 +58,7 @@ suspend fun main() {
         // Add a weather tool
         addTool("get_weather", "Get the current weather for a location") { req: WeatherRequest ->
             // Make an API call to get weather data
-            weatherUrl(req.location).run { httpClient.get(this).body<WeatherResponse>() }
+            callWeatherApi(req.location)
         }
     }
 
@@ -78,4 +70,16 @@ suspend fun main() {
         is Result.Stuck -> println("Agent is stuck: ${result.reason}")
         is Result.Fatal -> println("Error: ${result.message}")
     }
+
+    println(run.getTokenUsageSummary())
 }
+
+val httpClient = HttpClient {
+    install(ContentNegotiation) {
+        json(Json { ignoreUnknownKeys = true })
+    }
+}
+
+suspend fun callWeatherApi(location: String): WeatherResponse =
+    httpClient.get("https://weerlive.nl/api/json-data-10min.php?key=demo&locatie=${location}")
+        .body<WeatherResponse>()
