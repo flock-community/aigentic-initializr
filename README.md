@@ -36,11 +36,13 @@ Replace the placeholder API keys in the example files with your actual API keys:
 ```kotlin
 openAIModel {
     apiKey("YOUR_API_KEY") // Replace with your actual API key
-    modelIdentifier(OpenAIModelIdentifier.GPT4Turbo)
+    modelIdentifier(OpenAIModelIdentifier.GPT4O)
 }
 ```
 
 ### 3. Build the project
+
+This will generate the `@AigenticParameter` annotated classes and the `Aigentic.initialize()` function.
 
 ```bash
 ./gradlew build
