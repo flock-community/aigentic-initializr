@@ -5,10 +5,9 @@ plugins {
 }
 
 group = "community.flock.aigentic.initializr"
-version = "0.1.0-SNAPSHOT"
+version = "0.0.0-SNAPSHOT"
 
-val aigenticVersion = "0.1.0-SNAPSHOT"
-val ktorVersion = "2.3.13"
+val aigenticVersion = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -29,10 +28,6 @@ dependencies {
     // Tools modules (optional)
     implementation("community.flock.aigentic:http:${aigenticVersion}")
     implementation("community.flock.aigentic:openapi:${aigenticVersion}")
-
-    // Ktor client
-    implementation("io.ktor:ktor-client-content-negotiation:${ktorVersion}")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:${ktorVersion}")
 
     // KSP processor
     ksp("community.flock.aigentic:ksp-processor:${aigenticVersion}")
