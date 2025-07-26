@@ -1,6 +1,7 @@
 plugins {
-    kotlin("jvm") version "2.1.21"
-    kotlin("plugin.serialization") version "1.9.23"
+    kotlin("jvm") version "2.2.0"
+    kotlin("plugin.serialization") version "2.2.0"
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 group = "community.flock.aigentic.initializr"
@@ -37,4 +38,14 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+spotless {
+    kotlin {
+        ktlint()
+        target("**/*.kt")
+        targetExclude("build/**/*.kt")
+        endWithNewline()
+        trimTrailingWhitespace()
+    }
 }
