@@ -12,13 +12,12 @@ Aigentic Initializr provides a template for quickly getting started with the Aig
 - Examples of different agent configurations
 - Integration with multiple AI providers (OpenAI, Gemini, Ollama, VertexAI)
 - Tools for HTTP requests and OpenAPI integration
-- Code generation with KSP (Kotlin Symbol Processing)
 
 ## Prerequisites
 
 - JDK 21 or higher
 - Kotlin 2.1.21 or higher
-- API keys for the AI providers you want to use (OpenAI, Gemini, etc.)
+- API keys for the AI providers you want to use (OpenAI, Gemini, etc.) or use your local Ollama instance.
 
 ## Getting Started
 
@@ -42,7 +41,7 @@ openAIModel {
 
 ### 3. Build the project
 
-This will generate the `@AigenticParameter` annotated classes and the `Aigentic.initialize()` function.
+This will generate the `@AigenticParameter` annotated classes.
 
 ```bash
 ./gradlew build
