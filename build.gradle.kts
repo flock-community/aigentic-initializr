@@ -1,13 +1,13 @@
 plugins {
-    kotlin("jvm") version "2.1.21"
-    kotlin("plugin.serialization") version "1.9.23"
-    id("com.google.devtools.ksp") version "2.1.21-2.0.1"
+    kotlin("jvm") version "2.2.0"
+    kotlin("plugin.serialization") version "2.2.0"
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 group = "community.flock.aigentic.initializr"
 version = "0.0.0-SNAPSHOT"
 
-val aigenticVersion = "0.1.0"
+val aigenticVersion = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -29,9 +29,6 @@ dependencies {
     implementation("community.flock.aigentic:http:${aigenticVersion}")
     implementation("community.flock.aigentic:openapi:${aigenticVersion}")
 
-    // KSP processor
-    ksp("community.flock.aigentic:ksp-processor:${aigenticVersion}")
-
     // Testing
     testImplementation(kotlin("test"))
 }
@@ -41,4 +38,14 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+spotless {
+    kotlin {
+        ktlint()
+        target("**/*.kt")
+        targetExclude("build/**/*.kt")
+        endWithNewline()
+        trimTrailingWhitespace()
+    }
 }
