@@ -16,7 +16,7 @@ Aigentic Initializr provides a template for quickly getting started with the Aig
 ## Prerequisites
 
 - JDK 21 or higher
-- Kotlin 2.1.21 or higher
+- Kotlin 2.3.0 or higher
 - API keys for the AI providers you want to use (OpenAI, Gemini, etc.) or use your local Ollama instance.
 
 ## Getting Started
@@ -24,7 +24,7 @@ Aigentic Initializr provides a template for quickly getting started with the Aig
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/aigentic-initializr.git
+git clone https://github.com/flock-community/aigentic-initializr.git
 cd aigentic-initializr
 ```
 
@@ -35,13 +35,13 @@ Replace the placeholder API keys in the example files with your actual API keys:
 ```kotlin
 openAIModel {
     apiKey("YOUR_API_KEY") // Replace with your actual API key
-    modelIdentifier(OpenAIModelIdentifier.GPT4O)
+    modelIdentifier(OpenAIModelIdentifier.GPT5_5)
 }
 ```
 
 ### 3. Build the project
 
-This will generate the `@AigenticParameter` annotated classes.
+The Kotlinx serialization plugin turns the `@AigenticParameter` annotated classes into the schemas the model fills in.
 
 ```bash
 ./gradlew build

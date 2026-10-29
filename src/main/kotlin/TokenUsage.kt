@@ -1,14 +1,13 @@
 import community.flock.aigentic.core.agent.Run
-import community.flock.aigentic.core.agent.cachedInputTokens
-import community.flock.aigentic.core.agent.inputTokens
-import community.flock.aigentic.core.agent.outputTokens
-import community.flock.aigentic.core.agent.thinkingOutputTokens
+import community.flock.aigentic.core.agent.tokenUsage
 
 fun Run<*>.getTokenUsageSummary(): String =
-    """
-    Token Usage:
-    - Input tokens: ${inputTokens()}
-    - Output tokens: ${outputTokens()}
-    - Thinking output tokens: ${thinkingOutputTokens()}
-    - Cached input tokens: ${cachedInputTokens()}
-    """.trimIndent()
+    tokenUsage().let { usage ->
+        """
+        Token Usage:
+        - Input tokens: ${usage.inputTokens}
+        - Output tokens: ${usage.outputTokens}
+        - Thinking output tokens: ${usage.thinkingOutputTokens}
+        - Cached input tokens: ${usage.cachedInputTokens}
+        """.trimIndent()
+    }
