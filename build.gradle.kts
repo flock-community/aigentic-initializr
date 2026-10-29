@@ -1,13 +1,13 @@
 plugins {
-    kotlin("jvm") version "2.2.0"
-    kotlin("plugin.serialization") version "2.2.0"
+    kotlin("jvm") version "2.3.0"
+    kotlin("plugin.serialization") version "2.3.0"
     id("com.diffplug.spotless") version "7.2.1"
 }
 
 group = "community.flock.aigentic.initializr"
 version = "0.0.0-SNAPSHOT"
 
-val aigenticVersion = "0.2.0"
+val aigenticVersion = "0.11.0"
 
 repositories {
     mavenCentral()
